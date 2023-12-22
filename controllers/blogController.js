@@ -67,3 +67,15 @@ export const deleteBlog = catchAsyncError(async (req, res, next) => {
   });
 });
 
+export const getSingleBlog = catchAsyncError(async (req, res, next) => {
+  const { id } = req.params;
+  const blog = await Blog.findById(id);
+
+  if (!blog) return next(new ErrorHandler("Blog not Found !", 404));
+
+  res.status(200).json({
+    status: true,
+    blog,
+  });
+});
+

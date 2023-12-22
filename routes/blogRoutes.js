@@ -3,6 +3,7 @@ import {
   createBlog,
   deleteBlog,
   getAllBlogs,
+  getSingleBlog,
 } from "../controllers/blogController.js";
 import { authorizeAdmin, isAuthenticated } from "../middlewares/auth.js";
 import singleUpload from "../middlewares/multer.js";
@@ -16,5 +17,6 @@ router
   .post(isAuthenticated, authorizeAdmin, singleUpload, createBlog);
 
 router.route("/blog/:id").delete(isAuthenticated, authorizeAdmin, deleteBlog);
+router.route("/blog/:id").get(isAuthenticated, authorizeAdmin, getSingleBlog);
 
 export default router;
