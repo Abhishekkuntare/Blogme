@@ -17,6 +17,6 @@ router
   .post(isAuthenticated, authorizeAdmin, singleUpload, createBlog);
 
 router.route("/blog/:id").delete(isAuthenticated, authorizeAdmin, deleteBlog);
-router.route("/blog/:id").get(isAuthenticated, authorizeAdmin, getSingleBlog);
+router.route("/blog/:id").get(authorizeAdmin, getSingleBlog);
 
 export default router;
